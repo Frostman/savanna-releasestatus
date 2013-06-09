@@ -1,0 +1,6 @@
+# Name of the series
+series: 0.2
+
+# Set of projects to consider in the report
+products:
+ - savanna

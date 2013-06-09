@@ -208,7 +208,7 @@ if __name__ == '__main__':
     with open(sys.argv[1]) as f:
         config = yaml.load(f)
 
-    gaugedata = CycleGaugeData(config)
+    gaugedata = None #CycleGaugeData(config)
 
     env = Environment(loader=FileSystemLoader(template_dir))
     template = env.get_template('template.html')
@@ -226,10 +226,10 @@ if __name__ == '__main__':
     for p in config['products']:
         for bp in lp.projects[p].getSeries(
                   name=config['series']).valid_specifications:
-            if bp.milestone and not bp.milestone.is_active:
-                pastbps.add(bp)
-            else:
+            if bp.milestone and bp.milestone.is_active:
                 activebps.add(bp)
+            else:
+                pastbps.add(bp)
 
     print template.render(series=config['series'],
                           gaugedata=gaugedata,

@@ -16,39 +16,13 @@
   <link type="text/css" rel="stylesheet" media="screen,print" href="combo.css">
  
   <script type="text/javascript" src="sorting.js"></script>
-  <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-  <script type='text/javascript'>
-      google.load('visualization', '1', {packages:['gauge']});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Label');
-        data.addColumn('number', 'Value');
-        data.addRows(1);
-        data.setValue(0, 0, '');
-        data.setValue(0, 1, {{ gaugedata.progress }});
-        var chart = new google.visualization.Gauge(
-          document.getElementById('chart_div'));
-        var options = {width: 140, height: 140,
-            greenFrom: {{ gaugedata.green }}, greenTo: {{ gaugedata.yellow }},
-            yellowFrom: {{ gaugedata.yellow }}, yellowTo: {{ gaugedata.red }},
-            redFrom: {{ gaugedata.red }}, redTo: {{ gaugedata.end }},
-            majorTicks: [ {{ gaugedata.ticks }} ],
-            minorTicks: 0, max: {{ gaugedata.end}} };
-        chart.draw(data, options);
-      }
-  </script>
 </head>
 
 <body id="document">
-  <script type="text/javascript">header('Release');</script>
   <div class="container">
+    <br>
     <div class="span-20">
-      <h1>OpenStack blueprints for {{ series }}</h1><p>&nbsp</p>
-      <a href="https://wiki.openstack.org/wiki/{{ series|capitalize }}_Release_Schedule">Release
-         Schedule</a><br>
-      <a href="https://wiki.openstack.org/wiki/Release_Cycle">Release
-         Cycle</a><br>&nbsp;<br>
+      <h1>Savanna blueprints for {{ series }}</h1><p>&nbsp</p>
       <ol class="breadcrumbs">
         <li>Page refreshed at {{ date }} UTC </li>
         <li>{{ activebps|length + pastbps|length }} total blueprints </li>
@@ -59,9 +33,6 @@
         <li><img src=bmpWORKINPROGRESS.png> Submitted change </li>
         <li><img src=bmpMERGED.png> Merged change</li>
       </ol>
-    </div>
-    <div class="span-4 last">
-       <div id='chart_div'></div>
     </div>
     </div>
     <div class=container>
@@ -137,12 +108,11 @@
     ts_resortTable(document.getElementById("sortprio"))
     ts_resortTable(document.getElementById("sortmilestone"))
    </script>
-   </div>
     <div class="flowed-block wide">
       <p>&nbsp</p>
-      <h2>Past milestones</h2>
+      <h2>Other/Undefined milestones</h2>
       <ol class="breadcrumbs">
-        <li>{{ pastbps|length }} completed blueprints</li>
+        <li>{{ pastbps|length }} blueprints</li>
       </ol>
     </div>
     <table class="listing sortable" id="speclisting">
@@ -178,5 +148,11 @@
     ts_resortTable(document.getElementById("sortBprio"))
     ts_resortTable(document.getElementById("sortBmilestone"))
    </script>
-   <script type="text/javascript">footer();</script>
+   <br>
+   <ol class="breadcrumbs">
+     <li>Page refreshed at {{ date }} UTC </li>
+     <li>Based on http://status.openstack.org/release/</li>
+   </ol>
+   <br>
+   </div>
 </body></html>
