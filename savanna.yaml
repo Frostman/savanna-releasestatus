@@ -4,3 +4,4 @@ series: icehouse
 # Set of projects to consider in the report
 products:
  - savanna
+ - python-savannaclient
