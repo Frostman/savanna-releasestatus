@@ -1,6 +1,6 @@
 # Name of the series
-series: icehouse
+series: juno
 
 # Set of projects to consider in the report
 products:
- - savanna
+ - sahara
